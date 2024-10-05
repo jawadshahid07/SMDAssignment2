@@ -1,19 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ToDoListActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin"
+        tools:ignore="MissingConstraints"
+        android:id="@+id/llNavigation">
+
+        <Button
+            android:id="@+id/btnTodoList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="To Do List"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/margin"/>
+
+        <Button
+            android:id="@+id/btnCompletedList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Completed Tasks"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/margin"/>
+    </LinearLayout>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        class="com.example.smdassignment2.TaskInputFragment"
+        tools:layout="@layout/fragment_task_input"
+        android:id="@+id/input_frag"
+        app:layout_constraintTop_toBottomOf="@id/llNavigation"
+        />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        class="com.example.smdassignment2.TodoFragment"
+        tools:layout="@layout/fragment_todo"
+        android:id="@+id/todo_frag"
+        app:layout_constraintTop_toBottomOf="@id/llNavigation"
+        android:layout_marginTop = "@dimen/fragment_margin"
+        />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
+        class="com.example.smdassignment2.CompletedFragment"
+        tools:layout="@layout/fragment_completed"
+        android:id="@+id/completed_frag"
+        app:layout_constraintTop_toBottomOf="@id/llNavigation"
+        android:layout_marginTop = "@dimen/fragment_margin"
+        />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="@dimen/margin"
+        android:src="@drawable/add_icon"
+        android:id="@+id/fab_add_task"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
