@@ -1,5 +1,7 @@
 package com.example.smdassignment2;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -68,6 +71,7 @@ public class ToDoListActivity extends AppCompatActivity implements TaskInputFrag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+        Log.d(TAG, "ToDoListActivity onCreate called");
 
         fragmentManager = getSupportFragmentManager();
         todoFragment = (TodoFragment) fragmentManager.findFragmentById(R.id.todo_frag);
@@ -151,17 +155,47 @@ public class ToDoListActivity extends AppCompatActivity implements TaskInputFrag
         saveTasks();
     }
 
+    public void deleteTask(Task task) {
+        if (toDoTaskList.contains(task)) {
+            // Remove from the to-do list
+            toDoTaskList.remove(task);
+            toDoTaskAdapter.notifyDataSetChanged();
+            Toast.makeText(this, "Task deleted from To-Do List", Toast.LENGTH_SHORT).show();
+        } else if (completedTaskList.contains(task)) {
+            // Remove from the completed list
+            completedTaskList.remove(task);
+            completedTaskAdapter.notifyDataSetChanged();
+            Toast.makeText(this, "Task deleted from Completed List", Toast.LENGTH_SHORT).show();
+        }
+        saveTasks();  // Ensure the updated lists are saved
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         saveTasks();
+        Log.d(TAG, "ToDoListActivity onPause called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadTasks();
+        Log.d(TAG, "ToDoListActivity onResume called");
     }
 
 
     private void saveTasks() {
+        MyApplication myApp = (MyApplication) getApplication();
+        myApp.saveTasks(this);
+        toDoTaskAdapter.notifyDataSetChanged();
+        completedTaskAdapter.notifyDataSetChanged();
     }
 
     private void loadTasks() {
-
+        MyApplication myApp = (MyApplication) getApplication();
+        myApp.loadTasks();  // Load tasks from file
+        toDoTaskAdapter.notifyDataSetChanged();
+        completedTaskAdapter.notifyDataSetChanged();
     }
 }

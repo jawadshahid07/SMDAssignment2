@@ -63,9 +63,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
                         .setTitle("Delete Task")
                         .setMessage("Are you sure you want to delete this task?")
                         .setPositiveButton("Yes", (dialog, which) -> {
-                            // Remove the task from the list
-                            remove(currentTask);
-                            notifyDataSetChanged();
+                            ((ToDoListActivity) context).deleteTask(currentTask);
                             Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show();
                         })
                         .setNegativeButton("No", null)

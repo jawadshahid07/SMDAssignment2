@@ -1,10 +1,13 @@
 package com.example.smdassignment2;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ public class TaskInputFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        Log.d(TAG, "TaskInputFragment onAttach called");
         if (context instanceof OnTaskAddedListener) {
             taskAddedListener = (OnTaskAddedListener) context;
         } else {
@@ -35,6 +39,7 @@ public class TaskInputFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "TaskInputFragment onCreateView called");
         View view = inflater.inflate(R.layout.fragment_task_input, container, false);
 
         etTaskName = view.findViewById(R.id.etTaskName);
@@ -63,6 +68,7 @@ public class TaskInputFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        Log.d(TAG, "TaskInputFragment onDetach called");
         taskAddedListener = null;
     }
 }

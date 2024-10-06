@@ -1,8 +1,11 @@
 package com.example.smdassignment2;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -15,6 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "SplashScreenActivity onCreate called");
         setContentView(R.layout.activity_splash_screen);
 
         ImageView logo = findViewById(R.id.ivLogo);
@@ -34,8 +38,9 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "SplashScreenActivity onActivityResult called");
         if (requestCode == MAIN_ACTIVITY_REQUEST_CODE) {
-            finish();  // Finish SplashActivity when MainActivity is done
+            finish();
         }
     }
 }
