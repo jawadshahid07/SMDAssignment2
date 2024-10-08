@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Jawad's Todo List"
         android:textSize="@dimen/app_name_text_size"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
