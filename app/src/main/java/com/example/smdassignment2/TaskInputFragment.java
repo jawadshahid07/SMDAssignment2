@@ -24,6 +24,7 @@ public class TaskInputFragment extends Fragment {
         void onTaskAdded(String taskName, String taskDescription);
     }
 
+
     private OnTaskAddedListener taskAddedListener;
 
     @Override

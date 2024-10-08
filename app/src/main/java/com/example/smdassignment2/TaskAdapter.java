@@ -78,6 +78,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
                 Intent intent = new Intent(context, TaskDetailsActivity.class);
                 intent.putExtra("taskName", currentTask.getName());
                 intent.putExtra("taskDescription", currentTask.getDescription());
+                intent.putExtra("completedStatus", currentTask.isCompleted());
                 ((ToDoListActivity) context).startActivityForResult(intent, 2);
             }
         });

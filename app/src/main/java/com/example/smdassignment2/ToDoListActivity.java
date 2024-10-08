@@ -58,14 +58,24 @@ public class ToDoListActivity extends AppCompatActivity implements TaskInputFrag
         toDoTaskList.add(newTask);
         toDoTaskAdapter.notifyDataSetChanged();
         saveTasks();
-        btnCompleted.setVisibility(View.VISIBLE);
-        btnTodo.setVisibility(View.VISIBLE);
         fragmentManager.beginTransaction()
                 .show(todoFragment)
                 .hide(completedFragment)
                 .hide(taskInputFragment)
                 .commit();
+        btnCompleted.setVisibility(View.VISIBLE);
+        btnTodo.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // Ensure the buttons are shown when going back from the task input fragment
+        btnCompleted.setVisibility(View.VISIBLE);
+        btnTodo.setVisibility(View.VISIBLE);
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

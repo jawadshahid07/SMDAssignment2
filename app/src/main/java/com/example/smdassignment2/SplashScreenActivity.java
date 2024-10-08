@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -22,8 +24,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         ImageView logo = findViewById(R.id.ivLogo);
+        TextView appName = findViewById(R.id.tvAppName);
         Animation splashAnimation = AnimationUtils.loadAnimation(this, R.anim.splash_animation);
         logo.startAnimation(splashAnimation);
+        appName.startAnimation(splashAnimation);
 
         // Delay for 5 seconds before navigating to MainActivity
         new Handler().postDelayed(new Runnable() {
